@@ -21,6 +21,7 @@
       <link href='https://fonts.googleapis.com/css?family=Lora:400,400italic|Work+Sans:300,400,500,600' rel='stylesheet' type='text/css'>
       <link href="assets/css/toolkit-startup.css" rel="stylesheet">
       <link href="assets/css/application-startup.css" rel="stylesheet">
+       <link href="assets/css/visualizations.css" rel="stylesheet">
     
 
     
@@ -114,7 +115,7 @@
       <div class="row">
         <div class="col-sm-10 col-md-6">
           <h1 class="block-title m-b-sm">Bear Paths</h1>
-          <p class="lead m-b-md text-muted">Choosing a major at UC Berkeley can be difficult and a typical question is: where do students end up after graduating from different majors?</p>
+          <p class="lead m-b-md text-muted">Choosing a major at UC Berkeley can be difficult and a typical question is: where do students end up after graduating from their respective majors?</p>
           <button class="btn btn-primary btn-lg">Explore Now</button>
         </div>
       </div>
@@ -126,25 +127,24 @@
   <div class="container">
     <div class="row app-align-center">
 
-      <div class="col-sm-5 hidden-xs">
-        <img class="app-iphone" src="assets/img/startup-2.jpg" style="width: 100%;">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+        <h6 class="text-muted text-uppercase">It's not always what you expect</h6>
+        <h3 class="m-t-0">Students often believe that only certain majors can lead to certain jobs but this is not always the case.</h3>
+        <p class="lead m-b-md">The classic tale is that of the CS major who becomes a software engineer or the Political Science major who works for the government but sometimes the road less travelled still leads to the same path as certain majors end up in career fields that are not always directly related to what they studied.</p>
       </div>
+      <div class="col-sm-2"></div>
 
-      <div class="col-sm-6 col-sm-offset-1">
-        <h6 class="text-muted text-uppercase">Rich Information</h6>
-        <h3 class="m-t-0">Make informed decisions with historical & real time data.</h3>
-        <p class="lead m-b-md">We combine immediate real time events with rich historical data to help answer the toughest questions about retention, growth, and engagement.</p>
-        <div class="row hidden-sm">
-          <div class="col-sm-6 m-b-md">
-            <h5 class="m-y-0">Data frequency</h5>
-            <p>We poll for data on a millisecond basis. You can react to new information in seconds rather than days. <a href="#" class="text-primary">Learn more.</a></p>
-          </div>
-          <div class="col-sm-6">
-            <h5 class="m-y-0">Reliability & uptime</h5>
-            <p>We process our data across a massively distributed network of reliable servers to ensure 99.99% uptime, always. <a href="#" class="text-primary">Learn more</a>.</p>
-          </div>
+    </div>
+
+    <div class="row app-align-center">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+        <div id="totalChordWrapper">
+        <div id="stretched-chord"></div>
         </div>
-      </div>
+        </div>
+        <div class="col-sm-2"></div>
     </div>
 
   </div>
@@ -154,32 +154,14 @@
   <div class="container">
     <div class="row app-align-center">
       <div class="col-sm-5 col-sm-push-7">
-        <pre class="app-code">
-<span>1</span> <span class="hidden-xs">goAnalytics</span> “who are the latest 3 users?”
-<span>2</span>
-<span>3</span>  {
-<span>4</span>    "Dave": {
-<span>5</span>      "fullName": "Dave Gamache",
-<span>6</span>      "twitterHandle": "@dhg",
-<span>7</span>    }
-<span>8</span>    "Mark": {
-<span>9</span>      "fullName": "Mark Otto",
-<span>10</span>      "twitterHandle": "@mdo",
-<span>11</span>    }
-<span>12</span>    "Jacob": {
-<span>13</span>      "fullName": "Jacob Thornton",
-<span>14</span>      "twitterHandle": "@fat",
-<span>15</span>    }
-<span>16</span>  }</pre>
+        <h6 class="text-muted text-uppercase">Some jobs are flexible about your major</h6>
+        <h3 class="m-t-0">Certain jobs like software engineers, product managers and data analysts take in a diverse set of majors.</h3>
+        <p class="lead m-b-md text-muted">These are the five most diverse career fields, taking in a variety of different majors from UC Berkeley. Hover over the circles to see what types of majors that go into these fields or zoom into the career to see a more detailed overview.</p>
       </div>
 
       <div class="col-sm-6 col-sm-pull-5">
-        <h6 class="text-muted text-uppercase">Easy development</h6>
-        <h3 class="m-t-0">Natural language queries make mining data easy for anyone.</h3>
-        <p class="lead m-b-md text-muted">Rather than force everyone at your company to learn incredibly difficult terminal commands, we allow anyone to query the data with natural language to return data.</p>
-        <button class="btn btn-default btn-lg btn-borderless">
-          Read our docs
-        </button>
+        <div id="clusterChart"></div>
+
       </div>
     </div>
   </div>
@@ -365,10 +347,12 @@
 
 </div>
 
-
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/toolkit.js"></script>
     <script src="assets/js/application.js"></script>
+    <script src="assets/js/visualizations.js"></script>
   </body>
 </html>
 

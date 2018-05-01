@@ -1,0 +1,57 @@
+#totalChordWrapper {
+  /* font-size: 1em; */
+  color: #525252;
+  text-align: center;
+} 
+
+#stretched-chord line {
+  stroke: #000;
+}
+
+#stretched-chord text {
+  /* font-size: 1em; */
+}
+
+#stretched-chord path.chord {
+  fill-opacity: .80;
+}
+
+#stretched-chord .title {
+  text-anchor: middle;
+  fill: #3B3B3B;
+  font-size: 1em;
+}
+
+#stretched-chord .titleLine {
+  stroke: #DCDCDC;
+  shape-rendering: crispEdges;
+}
+
+#stretched-chord .titles {
+  cursor: default;
+}
+
+.title-h3-chord {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 1.4em;
+}
+
+/* d3 tool tips */ 
+.d3-tip {
+  line-height: 1;
+  font-weight: normal;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
+  border-radius: 8px;
+}
+
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  text-align: center;
