@@ -1,0 +1,340 @@
+<html>
+<head>
+<style>
+
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    /*border-bottom: 1px dotted black;*/
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+.list {
+  font-family:sans-serif;
+}
+
+.table a
+{
+    display:block;
+    text-decoration:none;
+}
+
+tr:hover{
+  /*cursor: pointer;*/
+  background-color: #ccc;
+}
+
+td {
+  padding:10px; 
+  border:solid 1px #eee;
+  background-clip: padding-box; /* this has been added */
+  border-radius: 5px;
+  /*background-color: #369;*/
+  /*color: white;*/
+  /*border: 5px solid white;*/
+}
+
+td a {
+    display:block;
+    width:100%;
+    /*height:50px;*/
+    text-decoration: none;
+    color:black;
+}
+
+input {
+  border:solid 1px #ccc;
+  border-radius: 5px;
+  padding:7px 14px;
+  margin-bottom:10px
+}
+input:focus {
+  outline:none;
+  border-color:#aaa;
+}
+
+.sort-gpa {
+  background-color: rgba(200, 54, 54,0.5);
+  /*width:100px;*/
+}
+
+.sort-gpa:hover {
+  background-color: rgb(200, 54, 54);
+}
+
+.sort-flexibility {
+  background-color: #28a8e0;
+}
+
+.sort-flexibility:hover {
+  background-color:#1b8aba;
+}
+
+
+.sort {
+  padding:8px 12px;
+  border-radius: 4px;
+  border:none;
+  display:inline-block;
+  color:#fff;
+  text-decoration: none;
+  /*background-color: #28a8e0;*/
+  height:50px;
+  /*width:90px;*/
+}
+.originalsort {
+  padding:8px 30px;
+  border-radius: 6px;
+  border:none;
+  display:inline-block;
+  color:#fff;
+  text-decoration: none;
+  /*background-color: #28a8e0;*/
+  height:30px;
+}
+
+.sort:hover {
+  text-decoration: none;
+  /*background-color:#1b8aba;*/
+}
+
+.sort-norm {
+  background-color: #28a8e0;
+}
+
+.sort-norm:hover {
+  background-color:#1b8aba;
+}
+
+.sort:focus {
+  outline:none;
+}
+.sort:after {
+  display:inline-block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  content:"";
+  position: relative;
+  top:-10px;
+  right:-5px;
+}
+.sort.asc:after {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #fff;
+  content:"";
+  position: relative;
+  top:4px;
+  right:-5px;
+}
+.sort.desc:after {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #fff;
+  content:"";
+  position: relative;
+  top:-4px;
+  right:-5px;
+}
+
+.CellWithComment{
+  position:relative;
+}
+
+.CellComment{
+  display:none;
+  position:absolute; 
+  z-index:100;
+  border:1px;
+  background-color:white;
+  border-style:solid;
+  border-width:1px;
+  border-color:red;
+  padding:3px;
+  color:red; 
+  top:20px; 
+  left:20px;
+}
+
+.CellWithComment:hover span.CellComment{
+  display:block;
+}
+
+.hide {
+  visibility: hidden;
+  max-width: 20px;
+  overflow: hidden;
+  height:20px;
+  font-size:0px;
+  width:20px
+}
+
+.layout {
+/*  border-color:red;
+  border-width:2px;
+  border-style:solid;*/
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="jquery-3.3.1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+</head>
+
+<body>
+<!-- BEGIN TOP-SCROLL-BAR -->
+<div id="top-scroll-bar">
+  <button onClick="scrollToBottom()">Scroll to Bottom</button>
+  <button onClick="scrollSmoothToBottom()">Scroll <b>Smooth</b> to Bottom</button>
+</div> 
+<!-- END OF TOP-SCROLL-BAR -->
+<hr />
+
+
+<div class="layout" id="top-section">
+<div class="layout" id="users">
+  <div id="search-controls">
+    <button class="sort sort-gpa" data-sort="gpa">
+      GPA
+    </button>
+    <button class="sort sort-flexibility" data-sort="flexibility">
+      Job Flexibility
+    </button>
+    <button class="sort sort-norm" data-sort="name">
+      Sort by name
+    </button>
+    <input class="search" placeholder="Search" />
+  </div>
+<!-- <div class="layout" id="buffer">hello there</div> -->
+
+  <!--- Heatmap as table -->
+<div class="layout" id = "navsection">
+  <div class="layout" id = "heattable">
+  <table>
+    <!-- IMPORTANT, class="list" have to be at tbody -->
+    <tbody class="list" id="majorlist">
+<!--- Auto generated code -->
+
+<tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.45999999999999996)'><div class='hide'>292.0</div><span class='CellComment'>2.92</span></td><td class='flexibility CellWithComment' style='background-color:lightgray'><div class='tooltip'>NA</div><span class='CellComment'>NA</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Social Sciences Division</div><span class='CellComment'>L&S Social Sciences Division</span></td><td class='name' style=''><a href='#'>African American Studies</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.5349999999999999)'><div class='hide'>307.0</div><span class='CellComment'>3.07</span></td><td class='flexibility CellWithComment' style='background-color:pink79.82)'><div class='tooltip'>7981.999999999999</div><span class='CellComment'>79.82</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Undergrad Studies Division</div><span class='CellComment'>L&S Undergrad Studies Division</span></td><td class='name' style=''><a href='#'>American Studies</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.7250000000000001)'><div class='hide'>345.0</div><span class='CellComment'>3.45</span></td><td class='flexibility CellWithComment' style='background-color:pink89.7)'><div class='tooltip'>8970.0</div><span class='CellComment'>89.7</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Social Sciences Division</div><span class='CellComment'>L&S Social Sciences Division</span></td><td class='name' style=''><a href='#'>Anthropology</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.6299999999999999)'><div class='hide'>326.0</div><span class='CellComment'>3.26</span></td><td class='flexibility CellWithComment' style='background-color:pink42.38)'><div class='tooltip'>4238.0</div><span class='CellComment'>42.38</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Math & Phys Sciences Div</div><span class='CellComment'>L&S Math & Phys Sciences Div</span></td><td class='name' style=''><a href='#'>Applied Mathematics</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.835)'><div class='hide'>367.0</div><span class='CellComment'>3.67</span></td><td class='flexibility CellWithComment' style='background-color:pink113.77)'><div class='tooltip'>11377.0</div><span class='CellComment'>113.77</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Arts & Humanities Division</div><span class='CellComment'>L&S Arts & Humanities Division</span></td><td class='name' style=''><a href='#'>Art Practice</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.5800000000000001)'><div class='hide'>316.0</div><span class='CellComment'>3.16</span></td><td class='flexibility CellWithComment' style='background-color:lightgray'><div class='tooltip'>NA</div><span class='CellComment'>NA</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Social Sciences Division</div><span class='CellComment'>L&S Social Sciences Division</span></td><td class='name' style=''><a href='#'>Asian Studies</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.565)'><div class='hide'>313.0</div><span class='CellComment'>3.13</span></td><td class='flexibility CellWithComment' style='background-color:pink25.04)'><div class='tooltip'>2504.0</div><span class='CellComment'>25.04</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Math & Phys Sciences Div</div><span class='CellComment'>L&S Math & Phys Sciences Div</span></td><td class='name' style=''><a href='#'>Astrophysics</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:lightgray'><div class='hide'>NA</div><span class='CellComment'>NA</span></td><td class='flexibility CellWithComment' style='background-color:lightgray'><div class='tooltip'>NA</div><span class='CellComment'>NA</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:lightgray'><div class='hide'>NA</div><span class='CellComment'>NA</span></td><td class='name' style=''><a href='#'>Celtic Studies</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.71)'><div class='hide'>342.0</div><span class='CellComment'>3.42</span></td><td class='flexibility CellWithComment' style='background-color:lightgray'><div class='tooltip'>NA</div><span class='CellComment'>NA</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Arts & Humanities Division</div><span class='CellComment'>L&S Arts & Humanities Division</span></td><td class='name' style=''><a href='#'>Chinese</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.7649999999999999)'><div class='hide'>353.0</div><span class='CellComment'>3.53</span></td><td class='flexibility CellWithComment' style='background-color:pink60.01)'><div class='tooltip'>6001.0</div><span class='CellComment'>60.01</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Arts & Humanities Division</div><span class='CellComment'>L&S Arts & Humanities Division</span></td><td class='name' style=''><a href='#'>Classics</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.55)'><div class='hide'>310.0</div><span class='CellComment'>3.1</span></td><td class='flexibility CellWithComment' style='background-color:pink65.1)'><div class='tooltip'>6509.999999999999</div><span class='CellComment'>65.1</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Social Sciences Division</div><span class='CellComment'>L&S Social Sciences Division</span></td><td class='name' style=''><a href='#'>Cognitive Science</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.7549999999999999)'><div class='hide'>351.0</div><span class='CellComment'>3.51</span></td><td class='flexibility CellWithComment' style='background-color:pink45.63)'><div class='tooltip'>4563.0</div><span class='CellComment'>45.63</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Arts & Humanities Division</div><span class='CellComment'>L&S Arts & Humanities Division</span></td><td class='name' style=''><a href='#'>Comparative Literature</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.635)'><div class='hide'>327.0</div><span class='CellComment'>3.27</span></td><td class='flexibility CellWithComment' style='background-color:pink26.16)'><div class='tooltip'>2616.0</div><span class='CellComment'>26.16</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Administered Programs</div><span class='CellComment'>L&S Administered Programs</span></td><td class='name' style=''><a href='#'>Computer Science</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.595)'><div class='hide'>319.0</div><span class='CellComment'>3.19</span></td><td class='flexibility CellWithComment' style='background-color:pink79.75)'><div class='tooltip'>7975.0</div><span class='CellComment'>79.75</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Social Sciences Division</div><span class='CellComment'>L&S Social Sciences Division</span></td><td class='name' style=''><a href='#'>Development Studies</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.49)'><div class='hide'>298.0</div><span class='CellComment'>2.98</span></td><td class='flexibility CellWithComment' style='background-color:pink98.34)'><div class='tooltip'>9834.0</div><span class='CellComment'>98.34</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Math & Phys Sciences Div</div><span class='CellComment'>L&S Math & Phys Sciences Div</span></td><td class='name' style=''><a href='#'>Earth & Planetary Science</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.7350000000000001)'><div class='hide'>347.0</div><span class='CellComment'>3.47</span></td><td class='flexibility CellWithComment' style='background-color:pink55.52)'><div class='tooltip'>5552.0</div><span class='CellComment'>55.52</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Social Sciences Division</div><span class='CellComment'>L&S Social Sciences Division</span></td><td class='name' style=''><a href='#'>Economics</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.73)'><div class='hide'>346.0</div><span class='CellComment'>3.46</span></td><td class='flexibility CellWithComment' style='background-color:pink86.5)'><div class='tooltip'>8650.0</div><span class='CellComment'>86.5</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Arts & Humanities Division</div><span class='CellComment'>L&S Arts & Humanities Division</span></td><td class='name' style=''><a href='#'>English</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.71)'><div class='hide'>342.0</div><span class='CellComment'>3.42</span></td><td class='flexibility CellWithComment' style='background-color:lightgray'><div class='tooltip'>NA</div><span class='CellComment'>NA</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Social Sciences Division</div><span class='CellComment'>L&S Social Sciences Division</span></td><td class='name' style=''><a href='#'>Ethnic Studies</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.7050000000000001)'><div class='hide'>341.0</div><span class='CellComment'>3.41</span></td><td class='flexibility CellWithComment' style='background-color:pink44.33)'><div class='tooltip'>4433.0</div><span class='CellComment'>44.33</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Arts & Humanities Division</div><span class='CellComment'>L&S Arts & Humanities Division</span></td><td class='name' style=''><a href='#'>Film Studies</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.73)'><div class='hide'>346.0</div><span class='CellComment'>3.46</span></td><td class='flexibility CellWithComment' style='background-color:pink148.78)'><div class='tooltip'>14878.0</div><span class='CellComment'>148.78</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Arts & Humanities Division</div><span class='CellComment'>L&S Arts & Humanities Division</span></td><td class='name' style=''><a href='#'>French</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.7749999999999999)'><div class='hide'>355.0</div><span class='CellComment'>3.55</span></td><td class='flexibility CellWithComment' style='background-color:lightgray'><div class='tooltip'>NA</div><span class='CellComment'>NA</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Social Sciences Division</div><span class='CellComment'>L&S Social Sciences Division</span></td><td class='name' style=''><a href='#'>Gender & Women's Studies</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.6950000000000001)'><div class='hide'>339.0</div><span class='CellComment'>3.39</span></td><td class='flexibility CellWithComment' style='background-color:pink98.31)'><div class='tooltip'>9831.0</div><span class='CellComment'>98.31</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Social Sciences Division</div><span class='CellComment'>L&S Social Sciences Division</span></td><td class='name' style=''><a href='#'>Geography</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.7250000000000001)'><div class='hide'>345.0</div><span class='CellComment'>3.45</span></td><td class='flexibility CellWithComment' style='background-color:lightgray'><div class='tooltip'>NA</div><span class='CellComment'>NA</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Arts & Humanities Division</div><span class='CellComment'>L&S Arts & Humanities Division</span></td><td class='name' style=''><a href='#'>German</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.75)'><div class='hide'>350.0</div><span class='CellComment'>3.5</span></td><td class='flexibility CellWithComment' style='background-color:pink112.0)'><div class='tooltip'>11200.0</div><span class='CellComment'>112</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Social Sciences Division</div><span class='CellComment'>L&S Social Sciences Division</span></td><td class='name' style=''><a href='#'>History</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.75)'><div class='hide'>350.0</div><span class='CellComment'>3.5</span></td><td class='flexibility CellWithComment' style='background-color:pink21.0)'><div class='tooltip'>2100.0</div><span class='CellComment'>21</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Arts & Humanities Division</div><span class='CellComment'>L&S Arts & Humanities Division</span></td><td class='name' style=''><a href='#'>History of Art</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.6200000000000001)'><div class='hide'>324.0</div><span class='CellComment'>3.24</span></td><td class='flexibility CellWithComment' style='background-color:pink81.0)'><div class='tooltip'>8100.0</div><span class='CellComment'>81</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Biological Sciences Div</div><span class='CellComment'>L&S Biological Sciences Div</span></td><td class='name' style=''><a href='#'>Integrative Biology</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.585)'><div class='hide'>317.0</div><span class='CellComment'>3.17</span></td><td class='flexibility CellWithComment' style='background-color:pink38.04)'><div class='tooltip'>3804.0</div><span class='CellComment'>38.04</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Undergrad Studies Division</div><span class='CellComment'>L&S Undergrad Studies Division</span></td><td class='name' style=''><a href='#'>Interdisciplinary Studies</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.7150000000000001)'><div class='hide'>343.0</div><span class='CellComment'>3.43</span></td><td class='flexibility CellWithComment' style='background-color:lightgray'><div class='tooltip'>NA</div><span class='CellComment'>NA</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Arts & Humanities Division</div><span class='CellComment'>L&S Arts & Humanities Division</span></td><td class='name' style=''><a href='#'>Italian Studies</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.6699999999999999)'><div class='hide'>334.0</div><span class='CellComment'>3.34</span></td><td class='flexibility CellWithComment' style='background-color:lightgray'><div class='tooltip'>NA</div><span class='CellComment'>NA</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Arts & Humanities Division</div><span class='CellComment'>L&S Arts & Humanities Division</span></td><td class='name' style=''><a href='#'>Japanese Language</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.74)'><div class='hide'>348.0</div><span class='CellComment'>3.48</span></td><td class='flexibility CellWithComment' style='background-color:lightgray'><div class='tooltip'>NA</div><span class='CellComment'>NA</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Social Sciences Division</div><span class='CellComment'>L&S Social Sciences Division</span></td><td class='name' style=''><a href='#'>Latin American Studies</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.6200000000000001)'><div class='hide'>324.0</div><span class='CellComment'>3.24</span></td><td class='flexibility CellWithComment' style='background-color:pink68.04)'><div class='tooltip'>6804.000000000001</div><span class='CellComment'>68.04</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Administered Programs</div><span class='CellComment'>L&S Administered Programs</span></td><td class='name' style=''><a href='#'>Legal Studies</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.71)'><div class='hide'>342.0</div><span class='CellComment'>3.42</span></td><td class='flexibility CellWithComment' style='background-color:pink58.14)'><div class='tooltip'>5814.0</div><span class='CellComment'>58.14</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Social Sciences Division</div><span class='CellComment'>L&S Social Sciences Division</span></td><td class='name' style=''><a href='#'>Linguistics</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.69)'><div class='hide'>338.0</div><span class='CellComment'>3.38</span></td><td class='flexibility CellWithComment' style='background-color:pink104.78)'><div class='tooltip'>10478.0</div><span class='CellComment'>104.78</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Undergrad Studies Division</div><span class='CellComment'>L&S Undergrad Studies Division</span></td><td class='name' style=''><a href='#'>Mass Communications & Media Studies</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.7450000000000001)'><div class='hide'>349.0</div><span class='CellComment'>3.49</span></td><td class='flexibility CellWithComment' style='background-color:pink34.9)'><div class='tooltip'>3490.0</div><span class='CellComment'>34.9</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Math & Phys Sciences Div</div><span class='CellComment'>L&S Math & Phys Sciences Div</span></td><td class='name' style=''><a href='#'>Mathematics</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.7150000000000001)'><div class='hide'>343.0</div><span class='CellComment'>3.43</span></td><td class='flexibility CellWithComment' style='background-color:pink78.89)'><div class='tooltip'>7889.0</div><span class='CellComment'>78.89</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Biological Sciences Div</div><span class='CellComment'>L&S Biological Sciences Div</span></td><td class='name' style=''><a href='#'>Molecular and Cell Biology</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.7150000000000001)'><div class='hide'>343.0</div><span class='CellComment'>3.43</span></td><td class='flexibility CellWithComment' style='background-color:lightgray'><div class='tooltip'>NA</div><span class='CellComment'>NA</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Social Sciences Division</div><span class='CellComment'>L&S Social Sciences Division</span></td><td class='name' style=''><a href='#'>Middle Eastern Studies</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.75)'><div class='hide'>350.0</div><span class='CellComment'>3.5</span></td><td class='flexibility CellWithComment' style='background-color:pink0.0)'><div class='tooltip'>0.0</div><span class='CellComment'>0</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Arts & Humanities Division</div><span class='CellComment'>L&S Arts & Humanities Division</span></td><td class='name' style=''><a href='#'>Music</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.8300000000000001)'><div class='hide'>366.0</div><span class='CellComment'>3.66</span></td><td class='flexibility CellWithComment' style='background-color:pink0.0)'><div class='tooltip'>0.0</div><span class='CellComment'>0</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Arts & Humanities Division</div><span class='CellComment'>L&S Arts & Humanities Division</span></td><td class='name' style=''><a href='#'>Near Eastern Studies</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.7150000000000001)'><div class='hide'>343.0</div><span class='CellComment'>3.43</span></td><td class='flexibility CellWithComment' style='background-color:pink68.6)'><div class='tooltip'>6859.999999999999</div><span class='CellComment'>68.6</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Social Sciences Division</div><span class='CellComment'>L&S Social Sciences Division</span></td><td class='name' style=''><a href='#'>Peace and Conflict Studies</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.7)'><div class='hide'>340.0</div><span class='CellComment'>3.4</span></td><td class='flexibility CellWithComment' style='background-color:pink34.0)'><div class='tooltip'>3400.0</div><span class='CellComment'>34</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Arts & Humanities Division</div><span class='CellComment'>L&S Arts & Humanities Division</span></td><td class='name' style=''><a href='#'>Philosophy</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.6799999999999999)'><div class='hide'>336.0</div><span class='CellComment'>3.36</span></td><td class='flexibility CellWithComment' style='background-color:pink47.04)'><div class='tooltip'>4704.0</div><span class='CellComment'>47.04</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Math & Phys Sciences Div</div><span class='CellComment'>L&S Math & Phys Sciences Div</span></td><td class='name' style=''><a href='#'>Physics</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.6299999999999999)'><div class='hide'>326.0</div><span class='CellComment'>3.26</span></td><td class='flexibility CellWithComment' style='background-color:pink55.42)'><div class='tooltip'>5542.0</div><span class='CellComment'>55.42</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Social Sciences Division</div><span class='CellComment'>L&S Social Sciences Division</span></td><td class='name' style=''><a href='#'>Political Economy</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.6699999999999999)'><div class='hide'>334.0</div><span class='CellComment'>3.34</span></td><td class='flexibility CellWithComment' style='background-color:pink103.54)'><div class='tooltip'>10354.0</div><span class='CellComment'>103.54</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Social Sciences Division</div><span class='CellComment'>L&S Social Sciences Division</span></td><td class='name' style=''><a href='#'>Political Science</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.74)'><div class='hide'>348.0</div><span class='CellComment'>3.48</span></td><td class='flexibility CellWithComment' style='background-color:pink107.88)'><div class='tooltip'>10788.0</div><span class='CellComment'>107.88</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Social Sciences Division</div><span class='CellComment'>L&S Social Sciences Division</span></td><td class='name' style=''><a href='#'>Psychology</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.7450000000000001)'><div class='hide'>349.0</div><span class='CellComment'>3.49</span></td><td class='flexibility CellWithComment' style='background-color:pink80.27)'><div class='tooltip'>8027.0</div><span class='CellComment'>80.27</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Administered Programs</div><span class='CellComment'>L&S Administered Programs</span></td><td class='name' style=''><a href='#'>Public Health</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.6799999999999999)'><div class='hide'>336.0</div><span class='CellComment'>3.36</span></td><td class='flexibility CellWithComment' style='background-color:lightgray'><div class='tooltip'>NA</div><span class='CellComment'>NA</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Undergrad Studies Division</div><span class='CellComment'>L&S Undergrad Studies Division</span></td><td class='name' style=''><a href='#'>Religious Studies</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.73)'><div class='hide'>346.0</div><span class='CellComment'>3.46</span></td><td class='flexibility CellWithComment' style='background-color:pink31.14)'><div class='tooltip'>3114.0</div><span class='CellComment'>31.14</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Arts & Humanities Division</div><span class='CellComment'>L&S Arts & Humanities Division</span></td><td class='name' style=''><a href='#'>Rhetoric</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:lightgray'><div class='hide'>NA</div><span class='CellComment'>NA</span></td><td class='flexibility CellWithComment' style='background-color:lightgray'><div class='tooltip'>NA</div><span class='CellComment'>NA</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:lightgray'><div class='hide'>NA</div><span class='CellComment'>NA</span></td><td class='name' style=''><a href='#'>Scandinavian</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:lightgray'><div class='hide'>NA</div><span class='CellComment'>NA</span></td><td class='flexibility CellWithComment' style='background-color:lightgray'><div class='tooltip'>NA</div><span class='CellComment'>NA</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:lightgray'><div class='hide'>NA</div><span class='CellComment'>NA</span></td><td class='name' style=''><a href='#'>Slavic Language & Literature</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.6299999999999999)'><div class='hide'>326.0</div><span class='CellComment'>3.26</span></td><td class='flexibility CellWithComment' style='background-color:pink114.1)'><div class='tooltip'>11410.0</div><span class='CellComment'>114.1</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Administered Programs</div><span class='CellComment'>L&S Administered Programs</span></td><td class='name' style=''><a href='#'>Social Welfare</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.6399999999999999)'><div class='hide'>328.0</div><span class='CellComment'>3.28</span></td><td class='flexibility CellWithComment' style='background-color:pink78.72)'><div class='tooltip'>7872.0</div><span class='CellComment'>78.72</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Social Sciences Division</div><span class='CellComment'>L&S Social Sciences Division</span></td><td class='name' style=''><a href='#'>Sociology</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.585)'><div class='hide'>317.0</div><span class='CellComment'>3.17</span></td><td class='flexibility CellWithComment' style='background-color:lightgray'><div class='tooltip'>NA</div><span class='CellComment'>NA</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Arts & Humanities Division</div><span class='CellComment'>L&S Arts & Humanities Division</span></td><td class='name' style=''><a href='#'>South & South Asian Studies</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.69)'><div class='hide'>338.0</div><span class='CellComment'>3.38</span></td><td class='flexibility CellWithComment' style='background-color:pink40.56)'><div class='tooltip'>4056.0</div><span class='CellComment'>40.56</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Arts & Humanities Division</div><span class='CellComment'>L&S Arts & Humanities Division</span></td><td class='name' style=''><a href='#'>Spanish & Portuguese</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.685)'><div class='hide'>337.0</div><span class='CellComment'>3.37</span></td><td class='flexibility CellWithComment' style='background-color:pink50.55)'><div class='tooltip'>5055.0</div><span class='CellComment'>50.55</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Math & Phys Sciences Div</div><span class='CellComment'>L&S Math & Phys Sciences Div</span></td><td class='name' style=''><a href='#'>Statistics</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.74)'><div class='hide'>348.0</div><span class='CellComment'>3.48</span></td><td class='flexibility CellWithComment' style='background-color:pink107.88)'><div class='tooltip'>10788.0</div><span class='CellComment'>107.88</span></td><td class='college CellWithComment' style='background-color:red'><div class='hide'>L&S</div><span class='CellComment'>L&S</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>L&S Arts & Humanities Division</div><span class='CellComment'>L&S Arts & Humanities Division</span></td><td class='name' style=''><a href='#'>Theater, Dance & Performance Studies</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.77)'><div class='hide'>354.0</div><span class='CellComment'>3.54</span></td><td class='flexibility CellWithComment' style='background-color:pink28.32)'><div class='tooltip'>2832.0</div><span class='CellComment'>28.32</span></td><td class='college CellWithComment' style='background-color:orange'><div class='hide'>Haas</div><span class='CellComment'>Haas</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>Haas School of Business</div><span class='CellComment'>Haas School of Business</span></td><td class='name' style=''><a href='#'>Business Administration</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.615)'><div class='hide'>323.0</div><span class='CellComment'>3.23</span></td><td class='flexibility CellWithComment' style='background-color:pink87.21)'><div class='tooltip'>8721.0</div><span class='CellComment'>87.21</span></td><td class='college CellWithComment' style='background-color:yellow'><div class='hide'>College of Chemistry</div><span class='CellComment'>College of Chemistry</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>Clg of Chemistry</div><span class='CellComment'>Clg of Chemistry</span></td><td class='name' style=''><a href='#'>Chemical Biology</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.6299999999999999)'><div class='hide'>326.0</div><span class='CellComment'>3.26</span></td><td class='flexibility CellWithComment' style='background-color:pink81.5)'><div class='tooltip'>8150.0</div><span class='CellComment'>81.5</span></td><td class='college CellWithComment' style='background-color:yellow'><div class='hide'>College of Chemistry</div><span class='CellComment'>College of Chemistry</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>Clg of Chemistry</div><span class='CellComment'>Clg of Chemistry</span></td><td class='name' style=''><a href='#'>Chemical Engineering</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.7)'><div class='hide'>340.0</div><span class='CellComment'>3.4</span></td><td class='flexibility CellWithComment' style='background-color:pink20.4)'><div class='tooltip'>2039.9999999999998</div><span class='CellComment'>20.4</span></td><td class='college CellWithComment' style='background-color:yellow'><div class='hide'>College of Chemistry</div><span class='CellComment'>College of Chemistry</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>Clg of Chemistry</div><span class='CellComment'>Clg of Chemistry</span></td><td class='name' style=''><a href='#'>Chemistry</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.7250000000000001)'><div class='hide'>345.0</div><span class='CellComment'>3.45</span></td><td class='flexibility CellWithComment' style='background-color:pink34.5)'><div class='tooltip'>3450.0</div><span class='CellComment'>34.5</span></td><td class='college CellWithComment' style='background-color:blue'><div class='hide'>College of Engineering</div><span class='CellComment'>College of Engineering</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>Clg of Engineering</div><span class='CellComment'>Clg of Engineering</span></td><td class='name' style=''><a href='#'>Bioengineering</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.6499999999999999)'><div class='hide'>330.0</div><span class='CellComment'>3.3</span></td><td class='flexibility CellWithComment' style='background-color:pink29.7)'><div class='tooltip'>2970.0</div><span class='CellComment'>29.7</span></td><td class='college CellWithComment' style='background-color:blue'><div class='hide'>College of Engineering</div><span class='CellComment'>College of Engineering</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>Clg of Engineering</div><span class='CellComment'>Clg of Engineering</span></td><td class='name' style=''><a href='#'>Civil & Environmental Engineering</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.6699999999999999)'><div class='hide'>334.0</div><span class='CellComment'>3.34</span></td><td class='flexibility CellWithComment' style='background-color:pink16.7)'><div class='tooltip'>1670.0</div><span class='CellComment'>16.7</span></td><td class='college CellWithComment' style='background-color:blue'><div class='hide'>College of Engineering</div><span class='CellComment'>College of Engineering</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>Clg of Engineering</div><span class='CellComment'>Clg of Engineering</span></td><td class='name' style=''><a href='#'>EECS</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.7)'><div class='hide'>340.0</div><span class='CellComment'>3.4</span></td><td class='flexibility CellWithComment' style='background-color:pink51.0)'><div class='tooltip'>5100.0</div><span class='CellComment'>51</span></td><td class='college CellWithComment' style='background-color:blue'><div class='hide'>College of Engineering</div><span class='CellComment'>College of Engineering</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>Clg of Engineering</div><span class='CellComment'>Clg of Engineering</span></td><td class='name' style=''><a href='#'>Engineering Science</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.6950000000000001)'><div class='hide'>339.0</div><span class='CellComment'>3.39</span></td><td class='flexibility CellWithComment' style='background-color:pink16.95)'><div class='tooltip'>1695.0</div><span class='CellComment'>16.95</span></td><td class='college CellWithComment' style='background-color:blue'><div class='hide'>College of Engineering</div><span class='CellComment'>College of Engineering</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>Clg of Engineering</div><span class='CellComment'>Clg of Engineering</span></td><td class='name' style=''><a href='#'>IEOR</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.5900000000000001)'><div class='hide'>318.0</div><span class='CellComment'>3.18</span></td><td class='flexibility CellWithComment' style='background-color:pink12.72)'><div class='tooltip'>1272.0</div><span class='CellComment'>12.72</span></td><td class='college CellWithComment' style='background-color:blue'><div class='hide'>College of Engineering</div><span class='CellComment'>College of Engineering</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>Clg of Engineering</div><span class='CellComment'>Clg of Engineering</span></td><td class='name' style=''><a href='#'>Materials Science & Engineering</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.645)'><div class='hide'>329.0</div><span class='CellComment'>3.29</span></td><td class='flexibility CellWithComment' style='background-color:pink23.03)'><div class='tooltip'>2303.0</div><span class='CellComment'>23.03</span></td><td class='college CellWithComment' style='background-color:blue'><div class='hide'>College of Engineering</div><span class='CellComment'>College of Engineering</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>Clg of Engineering</div><span class='CellComment'>Clg of Engineering</span></td><td class='name' style=''><a href='#'>Mechanical Engineering</a></td></tr><tr><td class='gpa CellWithComment' style='background-color:rgba(200, 54, 54, 0.52)'><div class='hide'>304.0</div><span class='CellComment'>3.04</span></td><td class='flexibility CellWithComment' style='background-color:pink33.44)'><div class='tooltip'>3344.0</div><span class='CellComment'>33.44</span></td><td class='college CellWithComment' style='background-color:blue'><div class='hide'>College of Engineering</div><span class='CellComment'>College of Engineering</span></td><td class='advising CellWithComment' style='background-color:gray'><div class='hide'>Clg of Engineering</div><span class='CellComment'>Clg of Engineering</span></td><td class='name' style=''><a href='#'>Nuclear Engineering</a></td></tr>
+<!--- End Auto generated code -->
+
+    </tbody>
+  </table>
+</div> 
+<!--- End of heattable -->
+<!-- <div class="layout" id="navlegend">Nav legend</div> -->
+</div> 
+<!--- End of navsection  -->
+</div>
+<!--- End of users  -->
+</div>
+<!--- End of top-section  -->
+</div>
+
+<div class="layout" id="majorchart">
+  
+  <div class="layout" id="sankey">
+  </div>
+</div>
+
+
+<hr />
+<!-- BEGIN TOP-SCROLL-BAR -->
+<div id="top-scroll-bar">
+<button onClick="scrollToTop()">Scroll to Top</button>
+<button onClick="scrollSmoothToTop()">Scroll <b>Smooth</b> to Top</button>
+</div>
+<!-- END TOP-SCROLL-BAR -->
+
+<!-- SCRIPTS -->
+
+<!-- SORTING SCRIPT -->
+<script>
+var options = {
+  valueNames: [ 'name', 'gpa', 'flexibility' ]
+};
+
+var userList = new List('users', options);
+  </script>
+<!-- END SORTING SCRIPT -->
+
+  <!-- SCROLLING SCRIPT -->
+  <script>
+
+// document ready on click events
+// use data of a, pass var through id
+// on click scroll to bottom
+// as well as update the sankey
+
+
+scrollingElement = (document.scrollingElement || document.body)
+function scrollToBottom () {
+   scrollingElement.scrollTop = scrollingElement.scrollHeight;
+}
+
+function scrollToTop (id) {
+   scrollingElement.scrollTop = 0;
+}
+
+//Require jQuery
+function scrollSmoothToBottom (id) {
+   $(scrollingElement).animate({
+      scrollTop: document.body.scrollHeight
+   }, 500);
+}
+
+//Require jQuery
+function scrollSmoothToTop (id) {
+   $(scrollingElement).animate({
+      scrollTop: 0
+   }, 500);
+}
+</script>
+
+<!-- END SCROLLING SCRIPT -->
+
+
+
+
+</body>
+</html>
