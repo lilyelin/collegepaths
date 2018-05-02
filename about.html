@@ -138,6 +138,7 @@
 
     </div>
 <br><br>
+
 <div class="block block-inverse block-secondary app-code-block" style="background-color: #1b2b48;">
   <div class="container">
     <div class="row app-align-center">
@@ -147,14 +148,52 @@
 
       <div class="col-sm-5 col-sm-pull-6">
         <h6 class="text-muted text-uppercase">The process</h6>
-        <h3 class="m-t-0">Providing the metrics for major exploration</h3>
-        <p class="lead m-b-md text-muted">We then interviewed UC Berkeley undergraduates to get a sense of what metrics were most important to them so that we could show information that could help them explore different majors and their career paths.</p>
+        <h3 class="m-t-0">Providing the right metrics for major exploration</h3>
+        <p class="lead m-b-md text-muted">We surveyed UC Berkeley undergraduates to get a sense of what metrics were most important to them so that we could create visualization that could help them explore different majors and their career paths in a meaningful way.</p>
 
       </div>
     </div>
   </div>
 </div>
+<br><br><br><br>
+  <div class="container">
 
+    <div class="row app-align-center">
+
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+        <h6 class="text-muted text-uppercase">The process</h6>
+        <h3 class="m-t-0">Using data from UC Berkey's Career Center, we processed and transformed them into meaningful data visualizations</h3>
+        <p class="lead m-b-md">We noted specific trends that are present in the data and tried to illustrate the jobs that provided the most flexibility as well as majors that provided the most flexibility as well as allowing users to explore the data by themselves through choosing and sorting the metrics that are the most important to them.</p>
+
+<!--         <blockquote class="pull-quote">
+      <p>
+        “Notice that simple inset border above. Isn't it lovely.”
+      </p>
+      <cite>Mark Otto, Huge Nerd</cite>
+    </blockquote> -->
+      </div>
+      <div class="col-sm-2"></div>
+
+    </div>
+
+    </div>
+<br><br>
+
+
+<footer class="block block-inverse app-footer fixed-bottom" style="background-color: #2d4671;">
+ <div class="container text-center">
+    <div class="row app-align-center">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
+        <h6 class="text-muted text-uppercase">See what people in different majors do</h6>
+        <h3 class="m-t-0">What will your path look like?</h3>
+        <a class="btn btn-primary btn-lg" href="explore.html" role="button">Explore Now</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+</footer>
 
 
     <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -165,23 +204,23 @@
     <script>
       var data = [{
                 "name": "Personal Interest",
-                "value": 3,
+                "value": 30,
         },
             {
                 "name": "Major Reputation",
-                "value": 3,
+                "value": 10,
         },
             {
                 "name": "Skills Gained",
-                "value": 2,
+                "value": 18,
         },
             {
                 "name": "Job Title Post Graduation",
-                "value": 4,
+                "value": 60,
         },
             {
                 "name": "Salary Post Graduation",
-                "value": 4,
+                "value": 60,
         }];
 
         //sort bars based on value
@@ -192,9 +231,9 @@
         //set up svg using margin conventions - we'll need plenty of room on the left for labels
         var margin = {
             top: 15,
-            right: 25,
+            right: 50,
             bottom: 15,
-            left: 60
+            left: 180
         };
 
         var width = 500 - margin.left - margin.right,
@@ -261,7 +300,7 @@
                 return x(d.value) + 5;
             })
             .text(function (d) {
-                return d.value;
+                return d.value + "%";
             });
       </script>
   </body>
