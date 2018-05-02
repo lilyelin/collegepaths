@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,7 +10,7 @@
 
     <title>
       
-        StartUp &middot; 
+        Bear Paths &middot; 
       
     </title>
 
@@ -89,7 +86,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-       <a class="navbar-brand" href="">
+       <a class="navbar-brand" href="/index.html">
         <strong style="background: none; padding: 12px; border-radius: 4px; color: #28669F;">
           <img src="assets/img/bearicon.png" width="20%"> bearpaths
         </strong>
@@ -98,13 +95,13 @@
     <div class="navbar-collapse collapse text-uppercase">
       <ul class="nav navbar-nav navbar-right navbar-inverse">
         <li >
-          <a href="/index.html">About</a>
+          <a href="/about.html">About</a>
         </li>
         <li >
-          <a href="minimal/index.html">Explore</a>
+          <a href="/explore.html">Explore</a>
         </li>
         <li >
-          <a href="bold/index.html">Home</a>
+          <a href="/index.html">Home</a>
         </li>
       </ul>
     </div><!--/.nav-collapse -->
@@ -127,6 +124,13 @@
         <h6 class="text-muted text-uppercase">Choosing a path in life is difficult</h6>
         <h3 class="m-t-0">We are here to help you imagine the many different pathways that are available to you after college</h3>
         <p class="lead m-b-md">We hope to help undergraduates at UC Berkeley see what paths are available to different college majors to help assist in making a decision as to what major is right for them. The goal is to answer questions like: What graduate programs do people in my major go into? What types of industries do they end up in?</p>
+
+<!--         <blockquote class="pull-quote">
+      <p>
+        “Notice that simple inset border above. Isn't it lovely.”
+      </p>
+      <cite>Mark Otto, Huge Nerd</cite>
+    </blockquote> -->
       </div>
       <div class="col-sm-2"></div>
 
@@ -134,17 +138,17 @@
 
     </div>
 <br><br>
-<div class="block block-inverse block-secondary app-code-block">
+<div class="block block-inverse block-secondary app-code-block" style="background-color: #1b2b48;">
   <div class="container">
     <div class="row app-align-center">
-      <div class="col-sm-5 col-sm-push-7">
-        <h6 class="text-muted text-uppercase">Where does the data come from</h6>
-        <h3 class="m-t-0">We used data from UC Berkeley's Career Center website to provide information about where graduating seniors end up one year out of college</h3>
-        <p class="lead m-b-md text-muted">It is important to note that the information provided is only for one year so there's plenty of opportunities to move around after the first job.</p>
+      <div class="col-sm-6 col-sm-push-6">
+        <div id="graphic"></div>
       </div>
 
-      <div class="col-sm-6 col-sm-pull-5">
-        <div id="clusterChart"></div>
+      <div class="col-sm-5 col-sm-pull-6">
+        <h6 class="text-muted text-uppercase">The process</h6>
+        <h3 class="m-t-0">Providing the metrics for major exploration</h3>
+        <p class="lead m-b-md text-muted">We then interviewed UC Berkeley undergraduates to get a sense of what metrics were most important to them so that we could show information that could help them explore different majors and their career paths.</p>
 
       </div>
     </div>
@@ -158,7 +162,108 @@
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/toolkit.js"></script>
     <script src="assets/js/application.js"></script>
-    <script src="assets/js/visualizations.js"></script>
+    <script>
+      var data = [{
+                "name": "Personal Interest",
+                "value": 3,
+        },
+            {
+                "name": "Major Reputation",
+                "value": 3,
+        },
+            {
+                "name": "Skills Gained",
+                "value": 2,
+        },
+            {
+                "name": "Job Title Post Graduation",
+                "value": 4,
+        },
+            {
+                "name": "Salary Post Graduation",
+                "value": 4,
+        }];
+
+        //sort bars based on value
+        data = data.sort(function (a, b) {
+            return d3.ascending(a.value, b.value);
+        })
+
+        //set up svg using margin conventions - we'll need plenty of room on the left for labels
+        var margin = {
+            top: 15,
+            right: 25,
+            bottom: 15,
+            left: 60
+        };
+
+        var width = 500 - margin.left - margin.right,
+            height = 300 - margin.top - margin.bottom;
+
+        var svg = d3.select("#graphic").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        var x = d3.scale.linear()
+            .range([0, width])
+            .domain([0, d3.max(data, function (d) {
+                return d.value;
+            })]);
+
+        var y = d3.scale.ordinal()
+            .rangeRoundBands([height, 0], .1)
+            .domain(data.map(function (d) {
+                return d.name;
+            }));
+
+        //make y axis to show bar names
+        var yAxis = d3.svg.axis()
+            .scale(y)
+            //no tick marks
+            .tickSize(0)
+            .orient("left");
+
+        var gy = svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis)
+            .style("fill", "#fff")  
+
+        var bars = svg.selectAll(".bar")
+            .data(data)
+            .enter()
+            .append("g")
+
+        //append rects
+        bars.append("rect")
+            .attr("class", "bar")
+            .style("fill", "#fec66d")
+            .attr("y", function (d) {
+                return y(d.name);
+            })
+            .attr("height", y.rangeBand())
+            .attr("x", 0)
+            .attr("width", function (d) {
+                return x(d.value);
+            });
+
+        //add a value label to the right of each bar
+        bars.append("text")
+            .attr("class", "label")
+            .style("fill", "#fff")
+            //y position of the label is halfway down the bar
+            .attr("y", function (d) {
+                return y(d.name) + y.rangeBand() / 2 + 4;
+            })
+            //x position is 3 pixels to the right of the bar
+            .attr("x", function (d) {
+                return x(d.value) + 5;
+            })
+            .text(function (d) {
+                return d.value;
+            });
+      </script>
   </body>
 </html>
 
