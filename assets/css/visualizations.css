@@ -55,3 +55,44 @@
   line-height: 1;
   color: rgba(0, 0, 0, 0.8);
   text-align: center;
+
+/* collapasible tree */
+
+#collapsibletree .node {
+  cursor: pointer;
+}
+
+#collapsibletree .node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+#collapsibletree .node text {
+  font: 10px sans-serif;
+}
+
+#collapsibletree .link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}
+
+/* bar graph */
+.bar {
+    fill: #5f89ad;
+}
+
+.axis {
+    font-size: 13px;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    display: none;
+}
+
+.label {
+    font-size: 13px;
+}
