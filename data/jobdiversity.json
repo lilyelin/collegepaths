@@ -1,0 +1,231 @@
+{
+  "name": "",
+  "children": [
+    {
+      "name": "Software Engineer",
+      "children": [
+        {
+          "name": "Applied Mathematics",
+          "size": 11
+        },
+        {
+          "name": "Cognitive Science",
+          "size": 20
+        },
+        {
+          "name": "Computer Science",
+          "size": 129
+        },
+        {
+          "name": "Economics",
+          "size": 11
+        },
+        {
+          "name": "History",
+          "size": 1
+        },
+        {
+          "name": "Linguistics",
+          "size": 2
+        },
+        {
+          "name": "Mathematics",
+          "size": 5
+        },
+        {
+          "name": "Physics",
+          "size": 2
+        },
+        {
+          "name": "Political Science",
+          "size": 1
+        },
+        {
+          "name": "Statistics",
+          "size": 9
+        },
+        {
+          "name": "Theater, Dance & Performance Studies",
+          "size": 1
+        },
+        {
+          "name": "Chemistry",
+          "size": 2
+        },
+        {
+          "name": "Bioengineering",
+          "size": 4
+        },
+        {
+          "name": "Civil & Environmental Engineering",
+          "size": 1
+        },
+        {
+          "name": "EECS",
+          "size": 83
+        },
+        {
+          "name": "Engineering Sciences",
+          "size": 4
+        },
+        {
+          "name": "Materials Science & Engineering",
+          "size": 1
+        },
+        {
+          "name": "Nuclear Engineering",
+          "size": 1
+        }
+      ],
+      "size": 288
+    },
+    {
+      "name": "Data Analyst",
+      "children": [
+        {
+          "name": "Applied Mathematics",
+          "size": 50
+        },
+        {
+          "name": "Cognitive Science",
+          "size": 20
+        },
+        {
+          "name": "Economics",
+          "size": 80
+        },
+        {
+          "name": "Geography",
+          "size": 10
+        },
+        {
+          "name": "Interdisciplinary Studies",
+          "size": 10
+        },
+        {
+          "name": "Mass Communications and Media Studies",
+          "size": 10
+        },
+        {
+          "name": "Mathematics",
+          "size": 10
+        },
+        {
+          "name": "Physics",
+          "size": 10
+        },
+        {
+          "name": "Public Health",
+          "size": 20
+        },
+        {
+          "name": "Statistics",
+          "size": 30
+        },
+        {
+          "name": "IEOR",
+          "size": 10
+        }
+      ],
+      "size": 280
+    },
+    {
+      "name": "Product Manager",
+      "children": [
+        {
+          "name": "Cognitive Science",
+          "size": 30
+        },
+        {
+          "name": "Computer Science",
+          "size": 30
+        },
+        {
+          "name": "Economics",
+          "size": 10
+        },
+        {
+          "name": "Molecular and Cell Biology",
+          "size": 10
+        },
+        {
+          "name": "Political Science",
+          "size": 10
+        },
+        {
+          "name": "Business Administration",
+          "size": 50
+        },
+        {
+          "name": "EECS",
+          "size": 20
+        },
+        {
+          "name": "IEOR",
+          "size": 20
+        },
+        {
+          "name": "Environmental Economics and Policy",
+          "size": 20
+        }
+      ],
+      "size": 300
+    },
+    {
+      "name": "Associate Consultant",
+      "children": [
+        {
+          "name": "Anthropology",
+          "size": 10
+        },
+        {
+          "name": "Economics",
+          "size": 110
+        },
+        {
+          "name": "Mass Communications and Media Studies",
+          "size": 10
+        },
+        {
+          "name": "Psychology",
+          "size": 10
+        },
+        {
+          "name": "Public Health",
+          "size": 60
+        }
+      ],
+      "size": 370
+    },
+    {
+      "name": "Designer",
+      "children": [
+        {
+          "name": "Cognitive Science",
+          "size": 40
+        },
+        {
+          "name": "Interdisciplinary Studies",
+          "size": 21
+        },
+        {
+          "name": "Molecular and Cell Biology",
+          "size": 15
+        },
+        {
+          "name": "Sociology",
+          "size": 15
+        },
+        {
+          "name": "Architecture",
+          "size": 63
+        },
+        {
+          "name": "Urban Studies",
+          "size": 11
+        }
+      ],
+      "size": 165
+    }
+  ]
+}

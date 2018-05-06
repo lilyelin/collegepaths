@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+
+    <title>
+      
+        Bear Paths &middot; 
+      
+    </title>
+
+    
+      <link href='https://fonts.googleapis.com/css?family=Lora:400,400italic|Work+Sans:300,400,500,600' rel='stylesheet' type='text/css'>
+      <link href="assets/css/toolkit-startup.css" rel="stylesheet">
+      <link href="assets/css/application-startup.css" rel="stylesheet">
+       <link href="assets/css/visualizations.css" rel="stylesheet">
+    
+
+    
+
+    <style>
+      /* note: this is a hack for ios iframe for bootstrap themes shopify page */
+      /* this chunk of css is not part of the toolkit :) */
+      /* …curses ios, etc… */
+      @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+        body {
+          width: 1px;
+          min-width: 100%;
+          *width: 100%;
+        }
+        #stage {
+          height: 1px;
+          overflow: auto;
+          min-height: 100vh;
+          -webkit-overflow-scrolling: touch;
+        }
+      }
+    </style>
+  </head>
+
+
+<body>
+  
+
+
+
+<div class="stage-shelf stage-shelf-right hidden" id="sidebar">
+  <ul class="nav nav-bordered nav-stacked">
+    <li class="nav-header">Examples</li>
+    <li class="active">
+      <a href="index.html">Startup</a>
+    </li>
+    <li>
+      <a href="minimal/index.html">Minimal</a>
+    </li>
+    <li>
+      <a href="bold/index.html">Bold</a>
+    </li>
+    <li class="nav-divider"></li>
+    <li class="nav-header">Docs</li>
+    <li>
+      <a href="docs/index.html">Toolkit</a>
+    </li>
+    <li>
+      <a href="http://getbootstrap.com">Bootstrap</a>
+    </li>
+  </ul>
+</div>
+
+<div class="stage" id="stage">
+
+<div class="block block-fill-height app-header"">
+
+  <nav class="navbar navbar-inverse navbar-fixed-top navbar-padded app-navbar p-t-md">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed p-x-0"
+              data-target="#stage" data-toggle="stage" data-distance="-250">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="navbar-brand" href="/index.html">
+        <strong style="background: none; padding: 12px; border-radius: 4px; color: #28669F;">
+          <img src="assets/img/bearicon.png" width="20%"> bearpaths
+        </strong>
+      </a>
+    </div>
+    <div class="navbar-collapse collapse text-uppercase">
+      <ul class="nav navbar-nav navbar-right navbar-inverse">
+        <li >
+          <a href="/about.html">About</a>
+        </li>
+        <li >
+          <a href="/explore.html">Explore</a>
+        </li>
+        <li >
+          <a href="/index.html">Home</a>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+
+  <div class="container">
+ <div class="row app-align-center">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8">
+    <img src="assets/img/bear_illustration.png" style="width: 100%">
+  </div>
+  <div class="col-sm-2"></div>
+</div>
+
+    <div class="row app-align-center">
+
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+        <h6 class="text-muted text-uppercase">Choosing a path in life is difficult</h6>
+        <h3 class="m-t-0">We are here to help you imagine the many different pathways that are available to you after college</h3>
+        <p class="lead m-b-md">We hope to help undergraduates at UC Berkeley see what paths are available to different college majors to help assist in making a decision as to what major is right for them. The goal is to answer questions like: What graduate programs do people in my major go into? What types of industries do they end up in?</p>
+
+<!--         <blockquote class="pull-quote">
+      <p>
+        “Notice that simple inset border above. Isn't it lovely.”
+      </p>
+      <cite>Mark Otto, Huge Nerd</cite>
+    </blockquote> -->
+      </div>
+      <div class="col-sm-2"></div>
+
+    </div>
+
+    </div>
+<br><br>
+
+<div class="block block-inverse block-secondary app-code-block" style="background-color: #1b2b48;">
+  <div class="container">
+    <div class="row app-align-center">
+      <div class="col-sm-6 col-sm-push-6">
+        <div id="graphic"></div>
+      </div>
+
+      <div class="col-sm-5 col-sm-pull-6">
+        <h6 class="text-muted text-uppercase">The process</h6>
+        <h3 class="m-t-0">Providing the right metrics for major exploration</h3>
+        <p class="lead m-b-md text-muted">We surveyed UC Berkeley undergraduates to get a sense of what metrics were most important to them so that we could create visualization that could help them explore different majors and their career paths in a meaningful way.</p>
+
+      </div>
+    </div>
+  </div>
+</div>
+<br><br><br><br>
+  <div class="container">
+
+    <div class="row app-align-center">
+
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+        <h6 class="text-muted text-uppercase">The process</h6>
+        <h3 class="m-t-0">Using data from UC Berkey's Career Center, we processed and transformed them into meaningful data visualizations</h3>
+        <p class="lead m-b-md">We noted specific trends that are present in the data and tried to illustrate the jobs that provided the most flexibility as well as majors that provided the most flexibility as well as allowing users to explore the data by themselves through choosing and sorting the metrics that are the most important to them.</p>
+
+<!--         <blockquote class="pull-quote">
+      <p>
+        “Notice that simple inset border above. Isn't it lovely.”
+      </p>
+      <cite>Mark Otto, Huge Nerd</cite>
+    </blockquote> -->
+      </div>
+      <div class="col-sm-2"></div>
+
+    </div>
+
+    </div>
+<br><br>
+
+
+<footer class="block block-inverse app-footer fixed-bottom" style="background-color: #2d4671;">
+ <div class="container text-center">
+    <div class="row app-align-center">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
+        <h6 class="text-muted text-uppercase">See what people in different majors do</h6>
+        <h3 class="m-t-0">What will your path look like?</h3>
+        <a class="btn btn-primary btn-lg" href="explore.html" role="button">Explore Now</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+</footer>
+
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/toolkit.js"></script>
+    <script src="assets/js/application.js"></script>
+    <script>
+      var data = [{
+                "name": "Personal Interest",
+                "value": 30,
+        },
+            {
+                "name": "Major Reputation",
+                "value": 10,
+        },
+            {
+                "name": "Skills Gained",
+                "value": 18,
+        },
+            {
+                "name": "Job Title Post Graduation",
+                "value": 60,
+        },
+            {
+                "name": "Salary Post Graduation",
+                "value": 60,
+        }];
+
+        //sort bars based on value
+        data = data.sort(function (a, b) {
+            return d3.ascending(a.value, b.value);
+        })
+
+        //set up svg using margin conventions - we'll need plenty of room on the left for labels
+        var margin = {
+            top: 15,
+            right: 50,
+            bottom: 15,
+            left: 180
+        };
+
+        var width = 500 - margin.left - margin.right,
+            height = 300 - margin.top - margin.bottom;
+
+        var svg = d3.select("#graphic").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        var x = d3.scale.linear()
+            .range([0, width])
+            .domain([0, d3.max(data, function (d) {
+                return d.value;
+            })]);
+
+        var y = d3.scale.ordinal()
+            .rangeRoundBands([height, 0], .1)
+            .domain(data.map(function (d) {
+                return d.name;
+            }));
+
+        //make y axis to show bar names
+        var yAxis = d3.svg.axis()
+            .scale(y)
+            //no tick marks
+            .tickSize(0)
+            .orient("left");
+
+        var gy = svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis)
+            .style("fill", "#fff")  
+
+        var bars = svg.selectAll(".bar")
+            .data(data)
+            .enter()
+            .append("g")
+
+        //append rects
+        bars.append("rect")
+            .attr("class", "bar")
+            .style("fill", "#fec66d")
+            .attr("y", function (d) {
+                return y(d.name);
+            })
+            .attr("height", y.rangeBand())
+            .attr("x", 0)
+            .attr("width", function (d) {
+                return x(d.value);
+            });
+
+        //add a value label to the right of each bar
+        bars.append("text")
+            .attr("class", "label")
+            .style("fill", "#fff")
+            //y position of the label is halfway down the bar
+            .attr("y", function (d) {
+                return y(d.name) + y.rangeBand() / 2 + 4;
+            })
+            //x position is 3 pixels to the right of the bar
+            .attr("x", function (d) {
+                return x(d.value) + 5;
+            })
+            .text(function (d) {
+                return d.value + "%";
+            });
+      </script>
+  </body>
+</html>
+

@@ -1,0 +1,255 @@
+ {
+    "name": "UC Berkeley",
+    "children": [
+      {
+        "name": "Media Studies",
+        "parent": "UC Berkeley",
+        "children": [
+          {
+            "name": "Account Executive",
+            "parent": "Media Studies"
+          },
+          {
+            "name": "Advisor",
+            "parent": "Media Studies"
+          },
+          {
+            "name": "Associate Product Marketing Manager",
+            "parent": "Media Studies"
+          },
+          {
+            "name": "Associate Consultant",
+            "parent": "Media Studies"
+          },
+          {
+            "name": "Associate Reporter",
+            "parent": "Media Studies"
+          },
+          {
+            "name": "Business Analyst",
+            "parent": "Media Studies"
+          },
+          {
+            "name": "Consultant",
+            "parent": "Media Studies"
+          },
+          {
+            "name": "Data Analyst",
+            "parent": "Media Studies"
+          },
+          {
+            "name": "Founder/CEO",
+            "parent": "Media Studies"
+          },
+          {
+            "name": "Product Manager",
+            "parent": "Media Studies"
+          },
+          {
+            "name": "Recruiter",
+            "parent": "Media Studies"
+          }
+        ]
+      },
+      {
+        "name": "Cognitive Science",
+        "parent": "UC Berkeley",
+        "children": [
+          {
+            "name": "Administrative Assistant",
+            "parent": "Cognitive Science"
+          },
+          {
+            "name": "Artificial Intelligence Analyst",
+            "parent": "Cognitive Science"
+          },
+          {
+            "name": "Business Advisor",
+            "parent": "Cognitive Science"
+          },
+          {
+            "name": "CEO",
+            "parent": "Cognitive Science"
+          },
+          {
+            "name": "Data Analyst",
+            "parent": "Cognitive Science"
+          },
+          {
+            "name": "Design Engineer",
+            "parent": "Cognitive Science"
+          },
+          {
+            "name": "Machine Learning Engineer",
+            "parent": "Cognitive Science"
+          },
+          {
+            "name": "Product Manager",
+            "parent": "Cognitive Science"
+          },
+          {
+            "name": "Research Assistant",
+            "parent": "Cognitive Science"
+          },
+          {
+            "name": "Software Engineer",
+            "parent": "Cognitive Science"
+          },
+          {
+            "name": "UX Designer",
+            "parent": "Cognitive Science"
+          }
+        ]
+      },
+      {
+        "name": "Psychology",
+        "parent": "UC Berkeley",
+        "children": [
+          {
+            "name": "Account Manager",
+            "parent": "Psychology"
+          },
+          {
+            "name": "Administrative Assistant",
+            "parent": "Psychology"
+          },
+          {
+            "name": "Associate Consultant",
+            "parent": "Psychology"
+          },
+          {
+            "name": "Associate Media Planner",
+            "parent": "Psychology"
+          },
+          {
+            "name": "Auditor",
+            "parent": "Psychology"
+          },
+          {
+            "name": "Behavioral Therapist",
+            "parent": "Psychology"
+          },
+          {
+            "name": "Business Development Associate",
+            "parent": "Psychology"
+          },
+          {
+            "name": "Finance Associate",
+            "parent": "Psychology"
+          },
+          {
+            "name": "Manager",
+            "parent": "Psychology"
+          },
+          {
+            "name": "Police Officer",
+            "parent": "Psychology"
+          },
+          {
+            "name": "Talent Acquisition Specialist",
+            "parent": "Psychology"
+          }
+        ]
+      },
+      {
+        "name": "Political Science",
+        "parent": "UC Berkeley",
+        "children": [
+          {
+            "name": "Account Executive",
+            "parent": "Political Science"
+          },
+          {
+            "name": "Analyst",
+            "parent": "Political Science"
+          },
+          {
+            "name": "Assistant Researcher",
+            "parent": "Political Science"
+          },
+          {
+            "name": "Business Development Manager",
+            "parent": "Political Science"
+          },
+          {
+            "name": "Legal Assistant",
+            "parent": "Political Science"
+          },
+          {
+            "name": "Policy Analyst",
+            "parent": "Political Science"
+          },
+          {
+            "name": "Product Manager",
+            "parent": "Political Science"
+          },
+          {
+            "name": "Program Manager",
+            "parent": "Political Science"
+          },
+          {
+            "name": "Quantitative Analyst",
+            "parent": "Political Science"
+          },
+          {
+            "name": "Research Analyst",
+            "parent": "Political Science"
+          },
+          {
+            "name": "Software Developer",
+            "parent": "Political Science"
+          }
+        ]
+      },
+      {
+        "name": "Integrative Biology",
+        "parent": "UC Berkeley",
+        "children": [
+          {
+            "name": "Administrative Assistant",
+            "parent": "Political Science"
+          },
+          {
+            "name": "Applications Engineer",
+            "parent": "Political Science"
+          },
+          {
+            "name": "Athletic Trainer",
+            "parent": "Political Science"
+          },
+          {
+            "name": "Consultant",
+            "parent": "Political Science"
+          },
+          {
+            "name": "Medical Scribe",
+            "parent": "Political Science"
+          },
+          {
+            "name": "Operations Associate",
+            "parent": "Political Science"
+          },
+          {
+            "name": "Paralegal",
+            "parent": "Political Science"
+          },
+          {
+            "name": "Quality Assurance Engineer",
+            "parent": "Political Science"
+          },
+          {
+            "name": "Research Assistant",
+            "parent": "Political Science"
+          },
+          {
+            "name": "Technician",
+            "parent": "Political Science"
+          },
+          {
+            "name": "Video Fellow",
+            "parent": "Political Science"
+          }
+        ]
+      }
+    ]
+  }

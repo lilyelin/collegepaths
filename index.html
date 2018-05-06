@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+
+    <title>
+      
+        Bear Paths &middot; 
+      
+    </title>
+
+    
+      <link href='https://fonts.googleapis.com/css?family=Lora:400,400italic|Work+Sans:300,400,500,600' rel='stylesheet' type='text/css'>
+      <link href="assets/css/toolkit-startup.css" rel="stylesheet">
+      <link href="assets/css/application-startup.css" rel="stylesheet">
+       <link href="assets/css/visualizations.css" rel="stylesheet">
+    
+
+    
+
+    <style>
+      /* note: this is a hack for ios iframe for bootstrap themes shopify page */
+      /* this chunk of css is not part of the toolkit :) */
+      /* …curses ios, etc… */
+      @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+        body {
+          width: 1px;
+          min-width: 100%;
+          *width: 100%;
+        }
+        #stage {
+          height: 1px;
+          overflow: auto;
+          min-height: 100vh;
+          -webkit-overflow-scrolling: touch;
+        }
+      }
+    </style>
+  </head>
+
+
+<body>
+  
+
+
+
+<div class="stage-shelf stage-shelf-right hidden" id="sidebar">
+  <ul class="nav nav-bordered nav-stacked">
+    <li class="nav-header">Examples</li>
+    <li class="active">
+      <a href="index.html">Startup</a>
+    </li>
+    <li>
+      <a href="minimal/index.html">Minimal</a>
+    </li>
+    <li>
+      <a href="bold/index.html">Bold</a>
+    </li>
+    <li class="nav-divider"></li>
+    <li class="nav-header">Docs</li>
+    <li>
+      <a href="docs/index.html">Toolkit</a>
+    </li>
+    <li>
+      <a href="http://getbootstrap.com">Bootstrap</a>
+    </li>
+  </ul>
+</div>
+
+<div class="stage" id="stage">
+
+<div class="block block-inverse block-fill-height app-header"
+     style="background-color: #2d4671;">
+
+  <nav class="navbar navbar-transparent navbar-fixed-top navbar-padded app-navbar p-t-md">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed p-x-0"
+              data-target="#stage" data-toggle="stage" data-distance="-250">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse text-uppercase">
+      <ul class="nav navbar-nav navbar-right">
+        <li >
+          <a href="about.html">About</a>
+        </li>
+        <li >
+          <a href="explore.html">Explore</a>
+        </li>
+        <li >
+          <a href="index.html">Home</a>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+
+
+  <img class="app-graph" src="assets/img/paws.svg">
+
+  <div class="block-xs-middle p-b-lg">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10 col-md-6">
+          <h1 class="block-title m-b-sm">Bear Paths</h1>
+          <p class="lead m-b-md text-muted">Choosing a major at UC Berkeley can be difficult and a typical question is: where do students end up after graduating from their respective majors?</p>
+          <a class="btn btn-primary btn-lg" href="explore.html" role="button">Explore Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="block block-secondary app-iphone-block">
+  <div class="container">
+    <div class="row app-align-center">
+
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+        <h6 class="text-muted text-uppercase">It's not always what you expect</h6>
+        <h3 class="m-t-0">Students often believe that only certain majors can lead to certain jobs but this is not always the case</h3>
+        <p class="lead m-b-md">The classic tale is that of the CS major who becomes a software engineer or the Political Science major who works for the government but sometimes the road less travelled still leads to the same path as certain majors end up in career fields that are not always directly related to what they studied.</p>
+      </div>
+      <div class="col-sm-2"></div>
+
+    </div>
+
+    <div class="row app-align-center">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+        <div id="totalChordWrapper">
+        <div id="stretched-chord"></div>
+        </div>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+
+  </div>
+</div>
+
+<div class="block block-inverse block-secondary app-code-block">
+  <div class="container">
+    <div class="row app-align-center">
+      <div class="col-sm-5 col-sm-push-7">
+        <h6 class="text-muted text-uppercase">Some jobs are flexible about your major</h6>
+        <h3 class="m-t-0">Certain jobs like software engineers, product managers and data analysts take in a diverse set of majors</h3>
+        <p class="lead m-b-md text-muted">These are the five most diverse career fields, taking in a variety of different majors from UC Berkeley. Hover over the circles to see what types of majors that go into these fields or zoom into the career to see a more detailed overview.</p>
+      </div>
+
+      <div class="col-sm-6 col-sm-pull-5">
+        <div id="clusterChart"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="block block-secondary app-iphone-block">
+  <div class="container">
+    <div class="row app-align-center">
+
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+        <h6 class="text-muted text-uppercase">Some majors lead to diverse pathways</h6>
+        <h3 class="m-t-0">There are majors at UC Berkeley that can prepare you for a wide variety of jobs</h3>
+        <p class="lead m-b-md">Contrary to popular belief, there is no 'one path' for a major. Even though students in different majors end up in similar career fields, there are some majors that provide flexibility and lead to diverse career outcomes. The below shows the five majors at UC Berkeley with the highest diversity of career outcomes afterwards, suggesting that an interdisciplinary skillset is the key to flexible career options.</p>
+      </div>
+      <div class="col-sm-2"></div>
+
+    </div>
+
+    <div class="row app-align-center">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+        <div id="collapsibletree"></div>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="block app-price-plans">
+  <div class="container">
+
+       <div class="row app-align-center">
+
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+
+           <blockquote class="pull-quote">
+      <p>
+        <i>“It's important to keep options open, you never know where your major will lead you.”</i>
+      </p>
+      <cite>UC Berkeley Undergrad</cite>
+    </blockquote><br><br><br>
+      <div class="col-sm-2"></div>
+
+    </div>
+
+    <div class="row app-align-center">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+        <div id="collapsibletree"></div>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+
+  </div>
+
+  </div>
+</div>
+
+<footer class="block block-inverse app-footer fixed-bottom" style="background-color: #2d4671;">
+ <div class="container text-center">
+    <div class="row app-align-center">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
+        <h6 class="text-muted text-uppercase">See what people in different majors do</h6>
+        <h3 class="m-t-0">What will your path look like?</h3>
+        <a class="btn btn-primary btn-lg" href="explore.html" role="button">Explore Now</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+</footer>
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/toolkit.js"></script>
+    <script src="assets/js/application.js"></script>
+    <script src="assets/js/visualizations.js"></script>
+  </body>
+</html>
+
