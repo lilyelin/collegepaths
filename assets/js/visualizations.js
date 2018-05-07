@@ -211,7 +211,7 @@ titleWrapper.append("text").attr("class", "title left").style("font-size", "1em"
 var defs = wrapper.append("defs"),
     linearGradient = defs.append("linearGradient").attr("id", "animatedChordGradient").attr("x1", "0%").attr("y1", "0%").attr("x2", "100%").attr("y2", "0").attr("spreadMethod", "reflect");
 linearGradient.append("animate").attr("attributeName", "x1").attr("values", "0%;100%").attr("dur", "7s").attr("repeatCount", "indefinite"), linearGradient.append("animate").attr("attributeName", "x2").attr("values", "100%;200%").attr("dur", "7s").attr("repeatCount", "indefinite"), linearGradient.append("stop").attr("offset", "5%").attr("stop-color", "#E8E8E8"), linearGradient.append("stop").attr("offset", "45%").attr("stop-color", "#A3A3A3"), linearGradient.append("stop").attr("offset", "555%").attr("stop-color", "#E8E8E8"), linearGradient.append("stop").attr("offset", "95%").attr("stop-color", "#A3A3A3");
-var Names = ["Administration", "Arts and Design", "Business Management", "Law", "Health/Medicine", "Technology", "Writing/Communication", "Consulting", "Teaching", "Sales", "Government", "Engineering", "Other", "", "Engineering", "Environmental Design", "Natural Resources", "Humanities", "Natural Sciences", "Social Sciences", "Business", ""],
+var Names = ["Administration", "Arts and Design", "Business/Management", "Law", "Health/Medicine", "Technology", "Writing/Communication", "Consulting", "Teaching", "Sales", "Government", "Engineering", "Other", "", "Engineering", "Environmental Design", "Natural Resources", "Humanities", "Natural Sciences", "Social Sciences", "Business", ""],
     respondents = 17533,
     emptyPerc = .5,
     emptyStroke = Math.round(respondents * emptyPerc),
@@ -254,7 +254,7 @@ g.append("path").style("stroke", function(t, e) {
     return t.pullOutSize = pullOutSize * (t.startAngle + .001 > Math.PI ? -1 : 1), "translate(" + t.pullOutSize + ",0)"
 }), g.append("text").each(function(t) {
     t.angle = (t.startAngle + t.endAngle) / 2 + offset
-}).attr("dy", ".35em").attr("class", "titles").style("font-size", "0.6em").attr("text-anchor", function(t) {
+}).attr("dy", ".35em").attr("class", "titles").style("font-size", "0.65em").attr("text-anchor", function(t) {
     return t.angle > Math.PI ? "end" : null
 }).attr("transform", function(t, e) {
     var r = arc.centroid(t);

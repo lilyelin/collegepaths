@@ -22,11 +22,11 @@
         },
         {
           "name": "History",
-          "size": 1
+          "size": 5
         },
         {
           "name": "Linguistics",
-          "size": 2
+          "size": 5
         },
         {
           "name": "Mathematics",
@@ -34,50 +34,22 @@
         },
         {
           "name": "Physics",
-          "size": 2
+          "size": 5
         },
         {
           "name": "Political Science",
-          "size": 1
+          "size": 7
         },
         {
           "name": "Statistics",
           "size": 9
         },
         {
-          "name": "Theater, Dance & Performance Studies",
-          "size": 1
-        },
-        {
-          "name": "Chemistry",
-          "size": 2
-        },
-        {
-          "name": "Bioengineering",
-          "size": 4
-        },
-        {
-          "name": "Civil & Environmental Engineering",
-          "size": 1
-        },
-        {
           "name": "EECS",
           "size": 83
-        },
-        {
-          "name": "Engineering Sciences",
-          "size": 4
-        },
-        {
-          "name": "Materials Science & Engineering",
-          "size": 1
-        },
-        {
-          "name": "Nuclear Engineering",
-          "size": 1
         }
       ],
-      "size": 288
+      "size": 290
     },
     {
       "name": "Data Analyst",
@@ -103,7 +75,7 @@
           "size": 10
         },
         {
-          "name": "Mass Communications and Media Studies",
+          "name": "Media Studies",
           "size": 10
         },
         {
@@ -172,7 +144,7 @@
       "size": 300
     },
     {
-      "name": "Associate Consultant",
+      "name": "Consultant",
       "children": [
         {
           "name": "Anthropology",
@@ -183,7 +155,7 @@
           "size": 110
         },
         {
-          "name": "Mass Communications and Media Studies",
+          "name": "Media Studies",
           "size": 10
         },
         {

@@ -144,7 +144,6 @@ td {
   /*border:solid 1px #eee;*/
   border:solid 1px #E6EAF0
   background-clip: padding-box; /* this has been added */
-  border-radius: 5px;
   /*background-color: #369;*/
   /*color: white;*/
   /*border: 5px solid white;*/
@@ -180,7 +179,7 @@ td.flexibility.CellWithComment {
   /*border:solid 1px #eee;*/
   border:solid 1px #E6EAF0
   background-clip: padding-box; /* this has been added */
-  border-radius: 2px;
+  border-radius: 0px;
   /*background-color: #369;*/
   /*color: white;*/
   /*border: 5px solid white;*/
@@ -579,29 +578,16 @@ input:focus {
 <!-- END HEADER BODY -->
 <br>
 <div class="container">
-
-
-<!-- BEGIN TOP-SCROLL-BAR -->
-<div>
-
-</div>
-<!-- END OF TOP-SCROLL-BAR -->
-<!-- hr> -->
+<div class="row app-align-center">
+<div class="col-md-12">
 
 
 <div class="layout" id="top-section">
-<div class="right" id="top-scroll-bar">
-  <!-- <button onClick="scrollToBottom()">Scroll to Bottom</button> -->
 
-  <button onClick="scrollSmoothToBottom()">Go to Bottom</button>
-  <!-- <button onClick="scrollToSankey()">To Sankey</button> -->
-
-</div> 
 <div class="layout padded-left" id="users">
   
 <!-- <div class="layout" id="buffer">hello there</div> -->
 <div class="layout">
-  <section class="container">
       <div class="one layout">
         <!-- BEGIN SEARCH CONTROLS -->
         <div id="search-controls">
@@ -691,14 +677,13 @@ input:focus {
           </div>
           <!-- <div class="layout" id="chart_area">CHART AREAs -->
           <!-- <div class="layout" id="sankey_wrapper" style="overflow-x:auto;overflow-y:auto;white-space: nowrap;width:80%;height:1000px;float:left"> -->
-          <div class="layout" id="sankey_wrapper" style="overflow-x:auto;white-space: nowrap;width:80%;height:1000px;float:left">
-            <div class="layout" id="sankey_chart" style="padding:10px;white-space:nowrap;width:800px;height:1000px;float:left">SANKEY CHART</div>
+          <div class="layout" id="sankey_wrapper" style="overflow-x:auto;white-space: nowrap;width:80%;height:500px;float:left">
+            <div class="layout" id="sankey_chart" style="padding:10px;white-space:nowrap;width:800px;height:500px;float:left">SANKEY CHART</div>
           </div>
         <!-- </div> -->
 
 
       </div>
-  </section>
 </div>
 
   <!--- Heatmap as table -->
@@ -826,10 +811,8 @@ input:focus {
 
 <hr />
 <!-- BEGIN TOP-SCROLL-BAR -->
-<div class="right" id="top-scroll-bar">
-  <!-- <button onClick="scrollToTop()">Scroll to Top</button> -->
-  <button onClick="scrollSmoothToTop()">Return to Top</button>
-  <!-- <button onClick="scrollToSankey()">To Sankey</button> -->
+
+</div>
 </div>
 </div>
 <!-- </div> -->

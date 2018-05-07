@@ -113,13 +113,14 @@
         <div class="col-sm-10 col-md-6">
           <h1 class="block-title m-b-sm">Bear Paths</h1>
           <p class="lead m-b-md text-muted">Choosing a major at UC Berkeley can be difficult and a typical question is: where do students end up after graduating from their respective majors?</p>
-          <a class="btn btn-primary btn-lg" href="explore.html" role="button">Explore Now</a>
+          <a class="btn btn-primary btn-lg" href="#start" role="button">Learn More</a>
         </div>
       </div>
     </div>
   </div>
 </div>
 
+<div id="start">
 <div class="block block-secondary app-iphone-block">
   <div class="container">
     <div class="row app-align-center">
@@ -136,7 +137,7 @@
 
     <div class="row app-align-center">
         <div class="col-sm-2"></div>
-        <div class="col-sm-8">
+        <div class="col-sm-12">
         <div id="totalChordWrapper">
         <div id="stretched-chord"></div>
         </div>
@@ -145,6 +146,7 @@
     </div>
 
   </div>
+</div>
 </div>
 
 <div class="block block-inverse block-secondary app-code-block">
@@ -189,6 +191,21 @@
 </div>
 
 
+
+<footer class="block block-inverse app-footer fixed-bottom" style="background-color: #2d4671;">
+ <div class="container text-center">
+    <div class="row app-align-center">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
+        <h6 class="text-muted text-uppercase">See what people in different majors do</h6>
+        <h3 class="m-t-0">What will your path look like?</h3>
+        <a class="btn btn-primary btn-lg" href="explore.html" role="button">Explore Now</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+</footer>
+
 <div class="block app-price-plans">
   <div class="container">
 
@@ -201,7 +218,7 @@
       <p>
         <i>“It's important to keep options open, you never know where your major will lead you.”</i>
       </p>
-      <cite>UC Berkeley Undergrad</cite>
+      <cite>Isabel, UC Berkeley Sophmore</cite>
     </blockquote><br><br><br>
       <div class="col-sm-2"></div>
 
@@ -220,26 +237,51 @@
   </div>
 </div>
 
-<footer class="block block-inverse app-footer fixed-bottom" style="background-color: #2d4671;">
- <div class="container text-center">
-    <div class="row app-align-center">
-      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
-        <h6 class="text-muted text-uppercase">See what people in different majors do</h6>
-        <h3 class="m-t-0">What will your path look like?</h3>
-        <a class="btn btn-primary btn-lg" href="explore.html" role="button">Explore Now</a>
-      </div>
-
-    </div>
-  </div>
-</div>
-</footer>
-
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/toolkit.js"></script>
     <script src="assets/js/application.js"></script>
     <script src="assets/js/visualizations.js"></script>
+
+     <script>
+    // Select all links with hashes
+$('a[href*="#"]')
+  // Remove links that don't actually link to anything
+  .not('[href="#"]')
+  .not('[href="#0"]')
+  .click(function(event) {
+    // On-page links
+    if (
+      location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
+      && 
+      location.hostname == this.hostname
+    ) {
+      // Figure out element to scroll to
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      // Does a scroll target exist?
+      if (target.length) {
+        // Only prevent default if animation is actually gonna happen
+        event.preventDefault();
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 1000, function() {
+          // Callback after animation
+          // Must change focus!
+          var $target = $(target);
+          $target.focus();
+          if ($target.is(":focus")) { // Checking if the target was focused
+            return false;
+          } else {
+            $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
+            $target.focus(); // Set focus again
+          };
+        });
+      }
+    }
+  });
+  </script>
   </body>
 </html>
 
