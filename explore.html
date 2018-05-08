@@ -420,6 +420,25 @@ input:focus {
     white-space: nowrap;
 }
 
+#legend {
+  width: 65%;
+  height: 20px;
+  background: linear-gradient(to right, #f8f9fc, #2e476e);
+  float: left;
+}
+
+.lower {
+  font-size: 10px;
+  width: 15%;
+  float: left;
+}
+
+.higher {
+  font-size: 10px;
+  width: 15%;
+  float: right;
+}
+
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="jquery-3.3.1.min.js"></script>
@@ -628,6 +647,11 @@ input:focus {
     </tbody>
   </table> -->
 <div class="scrollable layout" style="overflow-x:auto;white-space: nowrap;width:100%;height:600px;float:left"">
+<br>
+  <div class="lower">lower</div>
+  <div id="legend"></div>
+  <div class="higher">higher</div>
+  <br><br>
   <table id="myTable">
     <!-- IMPORTANT, class="list" have to be at tbody -->
     <tbody class="list" id="majorlist">
