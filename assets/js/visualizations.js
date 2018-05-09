@@ -310,7 +310,7 @@ var tip = d3.tip()
 
 svg.call(tip);
 
-d3.json("/data/jobdiversity.json", function(data) {
+d3.json("data/jobdiversity.json", function(data) {
 
   node = root = data;
   var nodes = pack.nodes(root);
